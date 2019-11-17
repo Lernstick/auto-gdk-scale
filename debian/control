@@ -1,13 +1,16 @@
 Source: auto-gdk-scale
 Section: misc
 Priority: optional
-Maintainer: Ronny Standtke <ronny.standtke@fhnw.ch>
+Maintainer: Ronny Standtke <ronny.standtke@gmx.net>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.7.3
 
 Package: auto-gdk-scale
 Architecture: all
-Depends: bc
+# Dependencies explained:
+# - bc: for screen scaling calculations
+# - x11-xserver-utils: we are using xrandr for getting the monitor and screen width
+Depends: bc, x11-xserver-utils
 Description: Wrapper script for running applications with a reasonable GDK_SCALE value
  This package contains a wrapper script that calculates a reasonable GDK_SCALE
  value based on the monitor width and screen resolution and then executes the
