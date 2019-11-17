@@ -1,0 +1,23 @@
+#!/bin/sh
+
+MONITOR_WIDTH=$(xrandr | grep -w "connected primary" | sed 's/.*) \(.*\)mm x .*mm/\1/g')
+if [ ${MONITOR_WIDTH} = "0" ]
+then
+	# seen in VirtualBox
+	echo "unknown monitor width"
+else
+	echo "monitor width: ${MONITOR_WIDTH} mm"
+	SCREEN_WIDTH=$(xrandr | grep -w "connected primary" | sed 's/.* primary \(.*\)x.*+.*/\1/g')
+	echo "screen width: ${SCREEN_WIDTH} pixel"
+	DPI=$(($SCREEN_WIDTH*254/MONITOR_WIDTH/10))
+	echo "DPI: ${DPI}"
+	export GDK_SCALE=$(echo "${DPI}/96" | bc)
+	echo "scaling factor (${DPI}/96): ${GDK_SCALE}"
+	if [ ${GDK_SCALE} = 0 ]
+	then
+		echo "resetting scaling factor to 1"
+		export GDK_SCALE=1
+	fi
+fi
+
+$@
