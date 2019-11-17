@@ -12,6 +12,8 @@ else
 	DPI=$(($SCREEN_WIDTH*254/MONITOR_WIDTH/10))
 	echo "DPI: ${DPI}"
 	export GDK_SCALE=$(echo "${DPI}/96" | bc)
+	# future version with fractional scaling
+	# export GDK_SCALE=$(echo "scale=1; ${DPI}/96" | bc)
 	echo "scaling factor (${DPI}/96): ${GDK_SCALE}"
 	if [ ${GDK_SCALE} = 0 ]
 	then
