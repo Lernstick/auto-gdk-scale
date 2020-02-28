@@ -1,0 +1,5 @@
+debian/.debhelper/
+debian/auto-gdk-scale.debhelper.log
+debian/auto-gdk-scale.substvars
+debian/auto-gdk-scale/
+debian/files
