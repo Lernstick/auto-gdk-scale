@@ -1,3 +1,16 @@
+auto-gdk-scale (2) lernstick-10; urgency=medium
+
+  [ Ronny Standtke ]
+  * [a9eb7f] added future version with fractional scaling
+  * [d779a4] updated control file
+  * [7681f1] code cleanup
+  * [43e72d] added .gitignore file
+
+  [ Sandro Covo ]
+  * [b0cb60] don't crash if running on gnome-boxes
+
+ -- Ronny Standtke <ronny.standtke@gmx.net>  Fri, 28 Feb 2020 08:58:01 +0100
+
 auto-gdk-scale (1) lernstick-10; urgency=low
 
   * Initial release
