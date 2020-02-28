@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MONITOR_WIDTH=$(xrandr | grep -w "connected primary" | sed 's/.*) \(.*\)mm x .*mm/\1/g')
+MONITOR_WIDTH=$(xrandr | grep -w "connected primary" | sed 's/.* \(.*\)mm x .*mm/\1/g')
 if [ "$MONITOR_WIDTH" -eq 0 ]
 then
 	# seen in VirtualBox
