@@ -5,31 +5,29 @@ printf "primary display:\\n%s" "$PRIMARY_DISPLAY"
 if [ -z "$PRIMARY_DISPLAY" ]
 then
 	echo "WARNINIG: primary display not found"
-	exit 0
-fi
-
-MONITOR_WIDTH=$(echo "$PRIMARY_DISPLAY" | sed 's/.* \(.*\)mm x .*mm/\1/g')
-echo "monitor width: $MONITOR_WIDTH mm"
-if [ "$MONITOR_WIDTH" -eq 0 ]
-then
-	# seen in VirtualBox
-	echo "WARNINIG: unknown monitor width"
-	exit 0
-fi
-
-SCREEN_WIDTH=$(echo "$PRIMARY_DISPLAY" | sed 's/.* primary \(.*\)x.*+.*/\1/g')
-echo "screen width: $SCREEN_WIDTH pixel"
-DPI=$((SCREEN_WIDTH*254/MONITOR_WIDTH/10))
-echo "DPI: $DPI"
-GDK_SCALE=$(echo "$DPI/96" | bc)
-export GDK_SCALE
-# future version with fractional scaling
-# export GDK_SCALE=$(echo "scale=1; ${DPI}/96" | bc)
-echo "scaling factor ($DPI/96): $GDK_SCALE"
-if [ "$GDK_SCALE" -eq 0 ]
-then
-	echo "resetting scaling factor to 1"
-	export GDK_SCALE=1
+else
+	MONITOR_WIDTH=$(echo "$PRIMARY_DISPLAY" | sed 's/.* \(.*\)mm x .*mm/\1/g')
+	echo "monitor width: $MONITOR_WIDTH mm"
+	if [ "$MONITOR_WIDTH" -eq 0 ]
+	then
+		# seen in VirtualBox
+		echo "WARNINIG: unknown monitor width"
+	else
+		SCREEN_WIDTH=$(echo "$PRIMARY_DISPLAY" | sed 's/.* primary \(.*\)x.*+.*/\1/g')
+		echo "screen width: $SCREEN_WIDTH pixel"
+		DPI=$((SCREEN_WIDTH*254/MONITOR_WIDTH/10))
+		echo "DPI: $DPI"
+		GDK_SCALE=$(echo "$DPI/96" | bc)
+		export GDK_SCALE
+		# future version with fractional scaling
+		# export GDK_SCALE=$(echo "scale=1; ${DPI}/96" | bc)
+		echo "scaling factor ($DPI/96): $GDK_SCALE"
+		if [ "$GDK_SCALE" -eq 0 ]
+		then
+			echo "resetting scaling factor to 1"
+			export GDK_SCALE=1
+		fi
+	fi
 fi
 
 "$@"
