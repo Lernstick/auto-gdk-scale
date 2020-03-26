@@ -1,3 +1,9 @@
+auto-gdk-scale (4) lernstick-10; urgency=medium
+
+  * [c7dc8e] don't exit after warnings
+
+ -- Ronny Standtke <ronny.standtke@gmx.net>  Thu, 26 Mar 2020 16:01:52 +0100
+
 auto-gdk-scale (3) lernstick-10; urgency=medium
 
   * [e9cf37] improved error handling
