@@ -1,3 +1,9 @@
+auto-gdk-scale (3) lernstick-10; urgency=medium
+
+  * [e9cf37] improved error handling
+
+ -- Ronny Standtke <ronny.standtke@gmx.net>  Thu, 26 Mar 2020 15:50:16 +0100
+
 auto-gdk-scale (2) lernstick-10; urgency=medium
 
   [ Ronny Standtke ]
